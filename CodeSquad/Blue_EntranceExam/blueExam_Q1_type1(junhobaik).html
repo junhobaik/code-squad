@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>blue test, Q1-1, junhobaik</title>
+  <style media="screen">
+    header {
+      margin: 1rem;
+      padding: 1rem;
+      color: white;
+      border-radius: 10px;
+      background-color: #0075d6;
+      text-align: center;
+    }
+
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2>블루 레벨 테스트, 문제1 (Type1)</h2>
+    <div>
+      백준호<br> junhobaik@gmail.com
+      <br> 010-3933-3317
+      <br>
+    </div>
+  </header>
+  개발자도구 Console을 이용해주세요.
+  <script type="text/javascript">
+    var country = [1, 2, 4, 0];
+    var country_length = country.length;
+    country.sort();
+    var result = "";
+    var zeroc = 0;
+
+    function to1240(num) {
+      if (typeof num !== 'number') {
+        return "error : It's not a number type";
+      } else if (num != 0) {
+        var division = num / country_length;
+        var remainder = num % country_length;
+        zeroc++;
+        to1240(parseInt(division)); //recursive
+        return result += country[remainder];
+      } else if (zeroc == 0) {
+        return country[0].toString();
+      } else { //reset
+        zeroc = 0;
+        result = "";
+      }
+    }
+
+    function toDec(str) {
+      if (typeof str !== 'string') {
+        return "error : It's not a string type";
+      } else {
+        var len = str.length;
+        var toDec_result = 0;
+        for (var i = len; i > 0; i--) {
+          var a = country.indexOf(parseInt(str.charAt(i - 1)));
+
+          if (a == -1) {
+            return "error : This is not the number in this country";
+          } else {
+            var b = a * Math.pow(country_length, Math.abs(len - i));
+            toDec_result += b;
+          }
+        }
+        return toDec_result;
+      }
+    }
+  </script>
+
+</body>
+
+</html>

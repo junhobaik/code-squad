@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>blue test, Q1-2, junhobaik</title>
+  <style media="screen">
+    header {
+      margin: 1rem;
+      padding: 1rem;
+      color: white;
+      border-radius: 10px;
+      background-color: #0075d6;
+      text-align: center;
+    }
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2>블루 레벨 테스트, 문제1 (Type2)</h2>
+    <div>
+      백준호<br> junhobaik@gmail.com
+      <br> 010-3933-3317
+      <br>
+    </div>
+  </header>
+  개발자도구 Console을 이용해주세요.
+
+  <script type="text/javascript">
+    country = [1, 2, 4, 0];
+    country.sort();
+
+    function to1240(num) {
+      if (typeof num !== 'number') {
+        return "error : It's not a number type";
+      } else {
+        var numStr = num.toString(country.length);
+        for (var key in country) {
+          if (key != country[key]) {
+            numStr = numStr.split(key).join(country[key]);
+          }
+        }
+        return numStr;
+      }
+    }
+
+    function toDec(str) {
+      if (typeof str !== 'string') {
+        return "error : It's not a string type";
+      } else {
+        for (var i in str) {
+          if (country.indexOf(parseInt(str[i])) == -1) {
+            return "error : This is not the number in this country";
+          }
+        }
+        for (var key in country) {
+          if (key != country[key]) {
+            str = str.split(country[key]).join(key);
+          }
+        }
+        return parseInt(str, country.length);
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>blue test, Q2, junhobaik</title>
+  <style media="screen">
+    header {
+      margin: 1rem;
+      padding: 1rem;
+      color: white;
+      border-radius: 10px;
+      background-color: #0075d6;
+      text-align: center;
+    }
+
+    body {
+      text-align: center;
+    }
+    .code{
+      padding: 1rem;
+      margin-left: 2rem;
+      text-align: justify;;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2>블루 레벨 테스트, 문제2</h2>
+    <div>
+      백준호<br> junhobaik@gmail.com
+      <br> 010-3933-3317
+      <br>
+    </div>
+  </header>
+  개발자도구 Console을 이용해주세요.<br><br>
+
+  현재 아래 과정이 코드에 포함되어 있습니다.<br>
+  <div class="code">
+    > var map_data="10,5\n++++++++++\n+-P------+\n+--------+\n+-----o--+\n++++++++++\n"<br>
+    > var json = parseData(map_data)<br>
+    > drawMap(json)<br>
+  </div>
+
+
+
+  <script type="text/javascript">
+    function parseData(map_string) {
+      var mapSplit = map_string.split("\n");
+      var wh = mapSplit[0].split(",");
+      mapSplit.splice(0, 1);
+      var json = {
+        width: wh[0],
+        height: wh[1],
+        data: mapSplit.join('').replace(/-/gi, ' ')
+      };
+
+      return json;
+    }
+
+    function drawMap(json) {
+      if (typeof json === 'string') {
+        json = JSON.parse(json);
+      }
+      for (var i = 0; i < json.height; i++) {
+        console.log(json.data.substr(i * json.width, json.width));
+      }
+    }
+
+    var map_data = "10,5\n++++++++++\n+-P------+\n+--------+\n+-----o--+\n++++++++++\n";
+    var json = parseData(map_data);
+    drawMap(json);
+  </script>
+</body>
+
+</html>
