@@ -27,4 +27,7 @@ Commit log
   
   
 [참고 자료 : Git Commit Log Rule][1]
-  [1]: https://item4.github.io/2016-11-01/How-to-Write-a-Git-Commit-Message/
+
+----------
+
+[1]: https://item4.github.io/2016-11-01/How-to-Write-a-Git-Commit-Message/
