@@ -65,6 +65,10 @@ nav {
 	color:red;
 }
 
+.selectedList{
+  font-weight: bold;
+	color:red;
+}
 .content {
 	width:600px;
 	overflow: auto;
