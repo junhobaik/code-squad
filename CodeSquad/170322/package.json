@@ -1,0 +1,23 @@
+{
+  "name": "newsstand",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mysql": "^2.13.0"
+  }
+}
+
+// npm install --save 패키지명 // 이게 동작중에 필요한것들
+// npm install --save-dev 패키지명 // 이게 동작전에 빌드나 그런거에 필요한 애들
+// npm install -g 패키지명 // 이게 컴퓨터 터미널에서 바로바로 실행해야할때 스는거..
+// npm install // 이게 package.json 파일을 읽어서 설치해주는거
+// 요즘엔 c로 컴파일되어있는 yarn 을 많이 쓰기도함
+// npm uninstall 위와 동일하지만 지워지는거.
