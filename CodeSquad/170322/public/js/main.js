@@ -13,17 +13,31 @@ ns.util = {
       fn(data); //데이터를 함수의 인자로 전달
     });
   },
-  removeAjax: function (url) {
-    var title = document.querySelector(".newsName").innerText;
-    var data = {
-      'title': title
-    };
-    data = JSON.stringify(data);
+  //
+  testAjax: function (url, fn) {
+    var a = document.querySelectorAll(".sub ul li");
+    var a_length = a.length;
+    var checkedList = [];
+    //document.querySelectorAll(".sub ul li")[0].querySelector('input').checked;
+    for (var i = 0; i < a_length; i++) {
+      if (a[i].querySelector('input').checked === true) {
+        checkedList.push({
+          'title': document.querySelectorAll(".sub ul li")[i].innerText
+        });
+      }
+    }
+    checkedList = JSON.stringify(checkedList);
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(data);
+    xhr.send(checkedList);
+
+    xhr.addEventListener('load', function () {
+      var data = JSON.parse(xhr.responseText); //서버를 통해 받은 데이터, json object로 변환
+      console.log("test", data); //데이터가 잘 넘어왔는지 확인
+      fn(data); //데이터를 함수의 인자로 전달
+    });
   }
   /** AJAX
    * 이벤트를 통해 ajax함수가 호출된다.
@@ -53,6 +67,9 @@ ns.dispatcher = {
 
 ns.model = {
   newsList: [],
+  //
+
+  //
   getNewsList: function () {
     console.log(".. model > getNewsList");
     return this.newsList;
@@ -72,6 +89,7 @@ ns.model = {
       if (this.newsList[i].title == title) {
         current = i;
         currentTitle = this.newsList[i].title;
+        document.querySelectorAll(".sub ul li")[i].querySelector('input').checked = false;
         break;
       }
     }
@@ -79,10 +97,6 @@ ns.model = {
     ns.dispatcher.emit({
       "type": "changeNewsList"
     }, [this.newsList]);
-
-    ns.dispatcher.emit({
-      "type": "removeDB"
-    }, []);
   }
 }; //모델 객체, 데이터 관련 함수들을 모음
 
@@ -177,9 +191,12 @@ ns.view.sub = {
       title[i] = this.titleList[i].title;
     }
     var result = title.reduce(function (prev, next) {
-      return prev + "<li>" + next + "<input type=\"checkbox\"></li>"
+      return prev + "<li>" + next + "<input type=\"checkbox\" checked></li>"
     }, "");
     document.querySelector(".sub ul").innerHTML = result;
+  },
+  getCheckedList: function () {
+    console.log(document.querySelectorAll(".sub ul"));
   }
 }
 //어떠한 행동일때 어떤 일을 할지 모은다. 디스패쳐 register를 통해 디스패쳐를 통해 실행할 수 있도록 한다.
@@ -217,10 +234,6 @@ ns.controller = {
         console.log(".. controller > join > changeNewsList ^ this.contentView.renderView(", data, ")");
         this.contentView.renderView(data);
       }.bind(this),
-
-      "removeDB": function () {
-        ns.util.removeAjax("http://localhost:3000/removeData_ajax");
-      },
 
       "initSubView": function (titlelist) {
         console.log(".. controller > join > initSubView / titlelist=", titlelist);
@@ -268,26 +281,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("2nd DOMContentLoaded");
-  //
-  ns.util.modelAjax("http://localhost:3000/getSubData_ajax", function (titlelist) {
+  document.querySelector(".mainArea").style.display = "none";
+  document.querySelector(".sub").style.display = "block";
+  //==
+  ns.util.modelAjax("http://localhost:3000/getData_ajax", function (titlelist) {
     ns.dispatcher.emit({
       "type": "initSubView"
     }, [titlelist]);
   });
-  //
-  ns.util.modelAjax("http://localhost:3000/getData_ajax", function (result) {
-    ns.dispatcher.emit({
-      "type": "initView"
-    }, [result]);
-  });
 });
 
-document.querySelector(".show").addEventListener("click", function(e){
-  if(e.target.className == "showSub"){
+document.querySelector(".show").addEventListener("click", function (e) {
+  if (e.target.className == "showSub") {
     document.querySelector(".mainArea").style.display = "none";
     document.querySelector(".sub").style.display = "block";
-  }else if(e.target.className == "showNews"){
+  } else if (e.target.className == "showNews") {
     document.querySelector(".mainArea").style.display = "block";
     document.querySelector(".sub").style.display = "none";
+
+    ns.util.testAjax("http://localhost:3000/test_ajax", function (result) {
+      ns.dispatcher.emit({
+        "type": "initView"
+      }, [result]);
+    });
   }
 });
