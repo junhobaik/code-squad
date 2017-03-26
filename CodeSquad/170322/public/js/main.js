@@ -89,8 +89,14 @@ ns.model = {
       if (this.newsList[i].title == title) {
         current = i;
         currentTitle = this.newsList[i].title;
-        document.querySelectorAll(".sub ul li")[i].querySelector('input').checked = false;
         break;
+      }
+    }
+    var sub_lis = document.querySelectorAll(".sub ul li");
+    var sub_lis_length = sub_lis.length;
+    for (var i = 0; i < sub_lis_length; i++) {
+      if (sub_lis[i].innerText == currentTitle) {
+        sub_lis[i].querySelector('input').checked = false;
       }
     }
     this.newsList.splice(current, 1);
