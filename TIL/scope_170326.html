@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <!------------------------------------------------------------>
+
+  <!--<button id="btn0">버튼 1</button>
+  <button id="btn1">버튼 2</button>
+  <button id="btn2">버튼 3</button>
+  <script>
+    var i, len = 3;
+    for (i = 0; i < len; i++) {
+      document.getElementById('btn'+i).addEventListener("click", function () {
+        console.log("Click btn", i);
+      });
+    }
+  </script>-->
+
+  <!------------------------------------------------------------>
+
+  <!--<script>
+    for(var i = 0; i < 10; i++){
+      var total = (total || 0) + 1;
+      var last = i;
+      if(total > 16){
+        break;
+      }
+    }
+    console.log("typeof total !== 'undifined'",typeof total !== "undifined");
+    console.log("typeof last !== 'undifined'",typeof last !== "undifined");
+    console.log("typeof i !== 'undifined'",typeof i !== "undifined");
+    console.log("total ==="+total+", last ==="+last);
+  </script>-->
+
+  <!------------------------------------------------------------>
+
+  <!--<script>
+    try {
+      throw new exception("fake exception");
+    } catch (error) {
+      var test = "can you see me?";
+      console.log(error instanceof ReferenceError === true);
+    }
+    console.log(test === "can you see me?");
+    console.log(typeof error === undefined);
+  </script>-->
+
+  <!------------------------------------------------------------>
+
+  <!--<button id="btn0">버튼 1</button>
+  <button id="btn1">버튼 2</button>
+  <button id="btn2">버튼 3</button>
+  <script>
+    var i, len = 3;
+
+    function setDiv(index) {
+      document.getElementById('btn' + index).addEventListener("click", function () {
+        console.log("Click btn", index);
+      });
+    }
+
+    for (i = 0; i < len; i++) {
+      setDiv(i);
+    }
+  </script>-->
+
+  <!------------------------------------------------------------>
+
+  <button id="btn0">버튼 1</button>
+  <button id="btn1">버튼 2</button>
+  <button id="btn2">버튼 3</button>
+  <script>
+    var i, len = 3;
+    for (i = 0; i < len; i++) {
+      document.getElementById('btn'+i).addEventListener("click", (function(index) {
+        return function (){
+          console.log("Click btn", index);
+        };
+      }(i)));
+    }
+  </script>
+
+  <!------------------------------------------------------------>
+
+
+</body>
+
+</html>
