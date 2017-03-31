@@ -7,6 +7,8 @@ Things to study
 - Prototype
 - Javascirpt Object-oriented
 - MVC pattern
+    - observer pattern
+    - dispatcher
 - this, bind()
 - CSS SASS/LESS
 - Git
@@ -18,6 +20,9 @@ Things to study
 - Linux
 - MySQL
 - BackLog
+- Jira
+- CORS
+- JSONP
 
 ----------
 
@@ -34,4 +39,4 @@ Things to study
 - 도움이 필요한 것을 짧게 공유한다.
 - 매일 오후에 회고(느낀점) 미팅을 한다.
     우리팀 활동에 대해 잘한점, 개선할점을 이야기하기.
-- 팀이 모든 것을 변경할 수 있고, 지속적으로 개선하려고 노력
+- 팀이 모든 것을 변경할 수 있고, 지속적으로 개선하려고 노력  

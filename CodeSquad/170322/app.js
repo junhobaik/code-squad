@@ -50,7 +50,6 @@ app.post('/test_ajax', function (req, res) {
   var query = connection.query(query_str, function (err, rows) {
     res.json(rows);
   });
-
 });
 
 /****************************************************************************************************/

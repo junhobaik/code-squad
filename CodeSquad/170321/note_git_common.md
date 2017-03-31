@@ -32,7 +32,7 @@ TIL (Today I Learned)
 
 >git config --global alias.co commit //comiit이란 명령어를 co로 지정, 줄여서 사용할 수 있다.  
 >git log --pretty-oneline --decorate --graph --all  
->git config --global alias.logs "log --pretty-oneline --decorate --graph --all"  
+>git config --global alias.logs "log --pretty=oneline --decorate --graph --all"  
 
 git branch bb [commit] //특정 커밋으로 브랜치를 만드는
 git checkout -b bb [commit]
@@ -84,11 +84,11 @@ git에서 특정 파일 히스토리 전체, 존재를 지우려면
 
 ----------
 
-**- 참고사항**
-> [좋은 커밋 메세지][1]
-> [Pro git book v2][2]
+**- 참고사항**  
+> [좋은 커밋 메세지][1]  
+> [Pro git book v2][2]  
 >  
-> 브랜칭 및 Workflow 이해하기   
+> 브랜칭 및 Workflow 이해하기     
 >> [실습][3]  
 >> [워크 플로우 1][4]  
 >> [워크 플로우 2][5]  
@@ -96,6 +96,6 @@ git에서 특정 파일 히스토리 전체, 존재를 지우려면
 
 [1]:https://item4.github.io/2016-11-01/How-to-Write-a-Git-Commit-Message/
 [2]:https://git-scm.com/book/ko/v2
-[3]:http://learnbranch.urigit.com/
+[3]:http://learngitbranching.js.org/
 [4]:https://ujuc.github.io/2015/12/16/git-flow-github-flow-gitlab-flow/
 [5]:https://guides.github.com/introduction/flow/
