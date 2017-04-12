@@ -10,7 +10,7 @@
 >
 > HTML
 >
-> URL
+> URL (HTML 의 주소)
 
 HTTP = HiperText Transfer Protocol. 
 
@@ -256,7 +256,6 @@ HTTP는 stateless이다.
 4. 연결 끊김
 5. 클라이언트에서 요청을 보낼때 쿠키값을 전달
 6. 서버에서는 데이터베이스를 뒤져 세션 정보를 기준으로 확인하여 응답을 보낸다.
-
 
 
 -----

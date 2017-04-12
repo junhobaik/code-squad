@@ -24,10 +24,7 @@ Things to study
 - CORS
 - JSONP
 - ES6
-
-----------
-
-- 네이버 뉴스 스탠드
-- 카카오corp css copy
-
-----------
+- Algorithm
+    - Big O
+    - Sorts
+- React.js

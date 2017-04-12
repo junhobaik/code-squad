@@ -13,7 +13,7 @@
 (function () {
   var list = document.querySelectorAll('li');
   var show = document.querySelector('.show');
-  for (let i = 0; i < list.length; i++) {
+  for (var i = 0; i < list.length; i++) {
     list[i].addEventListener('click', function () {
       console.log(i);
       show.innerText = i + 1 + '번째 과일이 선택됐습니다';
