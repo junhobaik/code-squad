@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header/>
+        <Header data={this.props.content.title}/>
         <Content data={this.props.content} addGamelist={this.props.handleAddGame}/>
       </div>
     );
@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch) => {
     handleAddGame: ({target}) => { 
       console.log('{target} is ',{target});
       console.log('target.previousElementSibling.value is ',target.previousElementSibling.value);
+      
       dispatch(actions.addGame(target.previousElementSibling.value));
     }
   }

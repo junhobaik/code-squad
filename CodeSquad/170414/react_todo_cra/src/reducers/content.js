@@ -2,7 +2,7 @@ import * as types from '../actions/ActionTypes';
 
 let initialState = {
   title : "My GameList",
-  gamelist : ['default 01']
+  gamelist : ['default value']
 };
 
 export default function content(state = initialState, action){

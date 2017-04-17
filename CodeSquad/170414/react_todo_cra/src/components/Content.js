@@ -12,7 +12,6 @@ class Content extends Component {
               <input type="text"/>
               <button onClick={this.props.addGamelist}>ADD</button>
               <br/><br/>
-              {this.props.data.title}
               <hr/>
               {gamelistJSX}
             </div>
