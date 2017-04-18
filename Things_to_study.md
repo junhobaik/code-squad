@@ -4,6 +4,7 @@ Things to study
 - DOM
 - Scope
 - Closure
+---
 - Prototype
 - Javascirpt Object-oriented
 - MVC pattern
@@ -28,3 +29,4 @@ Things to study
     - Big O
     - Sorts
 - React.js
+    - webpack
