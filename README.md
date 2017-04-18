@@ -17,7 +17,10 @@ GitHub Repository
 
 Team Project
 -----
-- [SNS Project][7]
+- [SNS Project][7] (Mini Project)
+  - instargram copy project
+- [\<code\>du][8]
+  - Code education Web service
 
 [1]:https://junhobaik.github.io
 [2]:https://github.com/junhobaik/junhobaik.github.io
@@ -26,3 +29,4 @@ Team Project
 [5]:https://github.com/junhobaik/junhobaik.github.io/tree/master/CodeSquad
 [6]:https://github.com/junhobaik/junhobaik.github.io/tree/master/TIL
 [7]:https://github.com/NamNUNU/SNS_Project
+[8]:https://github.com/junhobaik/codedu
