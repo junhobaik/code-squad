@@ -23,7 +23,7 @@ express 기반 웹서버 구동
 -----
 **express 설치**
 1. npm install express --save   
-//--save 설치된 정보를 pakage.json에 넣어둬서 나중에 이 프로젝트를 사용할 사람도 이것이 설치되도록하는 것, 의존 사항을 기술해두는 것.
+   //--save 설치된 정보를 pakage.json에 넣어둬서 나중에 이 프로젝트를 사용할 사람도 이것이 설치되도록하는 것, 의존 사항을 기술해두는 것.
 2. 프로젝트 폴더에 설치한 express에 해당하는 파일(폴더)가 추가, pakage.json 수정됨
 
 **app.js**
@@ -695,3 +695,97 @@ module.exports = router;
 ```
 
 views라는 폴더는 express 에서 정해져있는 역활의 폴더.  
+
+---
+Mysql escaping query  
+https://github.com/mysqljs/mysql#escaping-query-values
+
+---
+
+### Passport 환경 구축
+
+`npm install passport passport-local express-session connect-flash --save-dev`
+
+- [passport][http://passportjs.org/] : 인증 관련된 모듈 처리
+- [passport-local][https://github.com/jaredhanson/passport-local] : 일반적인 로컬DB를 거치는 로그인 방식을 처리
+- Express-session : 세션 처리
+- Connect-flash : 에러메세지와 같은 것들을 리다이렉트 과정에서 쉽게 전달 가능하게 해주는...
+
+
+
+app.js
+
+```js
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session')
+var flash = require('connect-flash')
+
+app.use(session({ //session은 보통 객체로 설정...
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
+```
+
+index.js(Router)
+
+```js
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy;
+
+router.get('/', function(req,res){
+  var msg;
+  var errMsg = req.flash('error');
+  if(errMsg) msg = errMsg;
+  res.render('join.ejs', {'message' : msg});
+})
+
+passport.serializeUser(function(user, done){
+  console.log('passport session save : ', user.id);
+  done(null, user.id);
+})
+passport.deserializeUser(function(id, done){
+  console.log('passport session get id : ', id)
+  done(err, id); //여기서 id는 받는 측에서 req.user로 받아올 수 있다
+})
+
+
+//local-join 이라는 Strategy를 만든다
+passport.use('local-join', new LocalStrategy({
+  usernameField:'email', //input name=email
+  passwordField: 'passwd' //input name=pwaswd
+  passReqToCallback: true //callback을 이용해서 전달하겠다...
+}, function(req, email, password, done){
+  console.log('local-join callback called');
+  var query = connection.query('select * from user where email=?', [email], function(err,rows){
+    if(err) return done(err); //done
+    if(rows.length){ //회원가입 중복을 막기 위해 체크
+      console.log('existed user');
+      return done(null,false, {
+        message : 'your email is already used'
+      })
+    }else{
+      var sql = {email: email, pw:password};
+      var query = connection.query('insert into user set ?', sql, function(err,rows){
+        if(err) throw err;
+        return done(null, {'email':email, 'id': rows.insertId})
+        //정상적일 경우 false 대신 세션에 들어갈 값을 넣는다.
+        //done을 할 경우 serialize라는 메소드를 불러서 실행할 것을 찾는다...
+      })
+    }
+  })
+}))
+
+router.post('/', passport.authenticate('local-join',{
+  successRedirect: '/main', //성공시 리다이렉트
+  failureRedirect: '/join', //실패시 리다이렉트
+  failureFlash: true
+}))
+```
+
+
+

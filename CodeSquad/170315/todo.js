@@ -17,8 +17,10 @@ function toDo() {
   this.toDoList = [];
 }
 
+toDo.prototype = toDoObj;
 var allTask = new toDo();
-Object.setPrototypeOf(allTask,toDoObj);
+//Object.setPrototypeOf(allTask,toDoObj);
+
 console.log("task 1~5 추가");
 allTask.add("task 1");
 allTask.add("task 2");
