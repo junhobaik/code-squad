@@ -18,4 +18,4 @@
     - Database
     - OS
 
-[1] : http://codesquad.kr/
+[1]:http://codesquad.kr/
