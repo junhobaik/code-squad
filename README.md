@@ -9,13 +9,15 @@
   - JavaScript
   - Node.js
   - React.js
-  - Team Project
-  - git
-  - Computer science
-    - Data Structure
-    - Network
-    - AWS
-    - Database
-    - OS
+  - git & github
+  - Data Structure & Algorithm
+  - Network
+  - Database
+  - OS & Linux
+  - Team Projects
+    - [Mini_SNS_Project (mini project)][2]
+    - [codedu][3]
 
 [1]:http://codesquad.kr/
+[2]:https://github.com/junhobaik/Mini_SNS_Project/
+[3]:https://github.com/junhobaik/codedu/
